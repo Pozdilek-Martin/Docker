@@ -12,8 +12,6 @@ Aby nám databáze přežila restart, tak si vytvoříme volume db-data. Ten nam
 Druhý kontejner bude obsahovat aplikaci adminer, která bude poslouchat na portu 8080.
 
 ```
-version: "3.8"
-
 services:
     database:
         container_name: database
@@ -24,7 +22,7 @@ services:
             - POSTGRES_PASSWORD=mysecretpassword
             - POSTGRES_DB=test
         volumes:
-            - db-data:/var/lib/postresql/data
+            - db-data:/var/lib/postresql
 
     adminer:
         container_name: adminer
@@ -55,7 +53,7 @@ Nyní můžeme databázi ovládat z příkazové řádky
 | create table images (id int, image_url varchar(1024));                                                                                                                                                 | Vytvoření tabulky                                |
 | insert into images values(1, 'https://images.unsplash.com/photo-1533450718592-29d45635f0a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8anBnfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60'); | Vložení řádku do tabulky                         | 
 | select * from images;                                                                                                                                                                                  | Výpis tabulky                                    |
-| CTRL+d pak CTRL+C                                                                                                                                                                                      | Vypnutí psql a pak odpojení od bash              |
+| CTRL+D pak CTRL+D                                                                                                                                                                                      | Vypnutí psql a pak odpojení od bash              |
 
 Vyzkoušíme si i webový přístup. V prohlížeči otevřete URL http://localhost:8080
 

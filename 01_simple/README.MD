@@ -4,6 +4,8 @@ V této kapitole si zprovozníme jednoduchý webový server Apache, který bude 
 
 Aplikace (stránka) je umístěna v adresáři webroot
 
+**Ve všech kapitolách příkazy docker spouštějte v Command Prompt. Pokud je budete spouštět pod Windows Powershell, některé příkazy nemusí projít.**
+
 ## Pojmy
 
 ### Image
@@ -33,7 +35,6 @@ s ostatními kontejnery. Z jednoho image můžeme vytvořit více kontejnerů, k
 | Příkaz                               | Vysvětlení                      |
 |--------------------------------------|---------------------------------|
 | docker ps                            | Vypsání běžících kontejnerů     |
-| docker ps -a                         | Vypsání všech kontejnerů        |
 | docker ps -a                         | Vypsání všech kontejnerů        |
 | docker ps --filter "label=abc"       | Výpis kontejnerů s daným label  |
 | docker ps --filter "label=key=value" | Výpis kontejnerů s daným label  |

@@ -11,8 +11,6 @@ Flask aplikaci budeme nyní spouštět v debug režimu, pomocí příkazu python
 To nám umožní sledovat detailněji chyby. 
 
 ```
-version: '3.8'
-
 services:
   web:
     container_name: web
@@ -87,9 +85,9 @@ Pak se vybere náhodný záznam v seznamu, který se zobrazí.
 # Spuštění
 | Příkaz                                                                               | Popis                                                                 |
 |--------------------------------------------------------------------------------------|-----------------------------------------------------------------------|
-| docker compose up                                                                    | Build a start aplikace                                                |
+| docker compose up --build                                                            | Build a start aplikace                                                |
 | http://localhost:8080/?pgsql=database&username=admin&db=test&ns=public&select=images | Přes adminer lze zkontrolovat, že tabulka images vytvořená a naplněná |
-| http://localhost:8005/                                                               | Zobrazení náhodného obrázku                                           |
+| http://localhost:8010/                                                               | Zobrazení náhodného obrázku                                           |
 | docker compose down                                                                  | Vypnutí aplikace                                                      |
 | DB_INIT=0                                                                            | V souboru .environment vyplňte inicializaci databáze                  |
 | docker compose up -d                                                                 | Zapnutí aplikace                                                      |

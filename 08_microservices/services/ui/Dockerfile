@@ -1,5 +1,5 @@
 # pull official base image
-FROM python:slim-buster
+FROM python:3.13-slim
 
 # set work directory
 WORKDIR /usr/src/app
@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-RUN apt-get update && apt-get install -y netcat iproute2
+RUN apt-get update && apt-get install -y netcat-openbsd iproute2
 
 # copy project
 COPY . /usr/src/app/

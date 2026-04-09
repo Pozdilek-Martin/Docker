@@ -1,11 +1,11 @@
 # pull official base image
-FROM python:slim-buster
+FROM python:3.13-slim
+
+# install system dependencies
+RUN apt-get update && apt-get install -y netcat-openbsd
 
 # set work directory
 WORKDIR /usr/src/app
-
-# install system dependencies
-RUN apt-get update && apt-get install -y netcat
 
 # copy project
 COPY . /usr/src/app/
@@ -17,4 +17,4 @@ RUN chmod a+x /usr/src/app/entrypoint.sh
 
 EXPOSE 5000
 
-ENTRYPOINT ["/bin/sh","/usr/src/app/entrypoint.sh"]
+ENTRYPOINT ["/bin/sh", "/usr/src/app/entrypoint.sh"]

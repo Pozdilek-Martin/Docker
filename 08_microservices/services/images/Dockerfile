@@ -1,11 +1,11 @@
 # pull official base image
-FROM python:slim-buster
+FROM python:3.13-slim 
+
+# install system dependencies
+RUN apt-get update && apt-get install -y netcat-openbsd
 
 # set work directory
 WORKDIR /usr/src/app
-
-# install system dependencies
-RUN apt-get update && apt-get install -y netcat
 
 # copy project
 COPY . /usr/src/app/

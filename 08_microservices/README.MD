@@ -54,8 +54,6 @@ database bude komunikovat pouze přes backnet. Služba images, které je spojuje
 Služby database a adminer zůstaly stejné jak v předchozí kapitole, proto se budeme věnovat hlavně službám ui a images.
 
 ```
-version: '3.8'
-
 services:
   ui:
     container_name: ui

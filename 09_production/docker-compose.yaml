@@ -5,58 +5,59 @@ services:
     container_name: ui
     build: ./services/ui
     command:
-      python manage.py run -h 0.0.0.0
+      gunicorn --bind 0.0.0.0:5000 manage:app
     volumes:
-      - ./services/ui/:/usr/src/app/
-    ports:
-      - "8006:5000"
+      - static_volume:/home/app/web/app/static
+    expose:
+      - 5000
     depends_on:
       - images
     env_file:
       - .environment
     networks:
-      - frontnet
+      - backnet
 
   images:
     container_name: images
     build: ./services/images
     command:
-      python manage.py run -h 0.0.0.0
-    volumes:
-      - ./services/images/:/usr/src/app/
+      gunicorn --bind 0.0.0.0:5000 manage:app
+    expose:
+      - 5000
     env_file:
       - .environment
     depends_on:
       - database
     networks:
       - backnet
-      - frontnet
 
   database:
     container_name: database
     restart: always
     image: postgres
     volumes:
-      - postgres_data:/var/lib/postgresql/data/
+      - postgres_data:/var/lib/postgresql
     env_file:
       - .environment
     networks:
       - backnet
 
-  adminer:
-      container_name: adminer
-      image: adminer
-      restart: always
-      depends_on:
-          - database
-      ports:
-        - "8080:8080"
-      networks:
-        - frontnet
-        - backnet
+  nginx:
+    container_name: nginx
+    build: ./services/nginx
+    ports:
+      - "8100:80"
+    depends_on:
+      - ui
+    volumes:
+      - static_volume:/home/app/web/app/static
+    networks:
+      - frontnet
+      - backnet
 
 volumes:
   postgres_data:
+  static_volume:
 
 networks:
   frontnet:
