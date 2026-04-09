@@ -49,7 +49,7 @@ COPY --from=builder /usr/src/app/requirements.txt .
 RUN pip install --upgrade pip
 RUN pip install --no-cache /wheels/*
 
-# copy entrypoint.sh
+# copy entrypoint-prod.sh
 COPY ./entrypoint.sh $APP_HOME
 
 # copy project

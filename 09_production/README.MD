@@ -2,13 +2,13 @@
 
 V této kapitole aplikaci dokončíme a vytvoříme konfiguraci, která bude vhodná pro nasazení do produkce.
 
-- Odebereme adminer, protože nástroj pro administraci databáze na produkci může být velmi nebezpečný
+- Odebereme adminer, protože nástroj pro administraci databáze na produkci může být velmi nebezpečný.
 - Vytvoříme novou službu nginx, který nakonfigurujeme jako reverzní proxy server. Bude sloužit jako jeden přístupový bod, který skryje vnitřní služby aplikace. Microslužby budou komunikovat po backnet síti a nepůjde s nimi komunikovat napřímo.
 
 ## docker-compose.yaml
 
 ### ui
- - aplikaci již nespouštíme přes interní flask webový server, který je určený pouze pro vývoj. Místo použijme gunicon, Python WSGI HTTP Server. To je web server gateway interface web server, který je dostatečně lehký, ale vhodný pro provoz pyhon aplikací.
+ - aplikaci již nespouštíme přes interní Flask webový server, který je určený pouze pro vývoj. Místo použijme gunicon, Python WSGI HTTP Server. To je web server gateway interface web server, který je dostatečně lehký, ale vhodný pro provoz pyhon aplikací.
  - zrušíme možnost bindingu (/services/ui/:/usr/src/app/), kdy jsme mohli rychle upravovat zdrojové soubory
  - naopak přidáme volume static_volume, který bude obsahovat statické části aplikace. Volume bude sdílet se službou nginx
  - zrušíme mapování portu 5000 na 8006, kterým jsme umožňovali komunikovat s webovou aplikací napřímo 
@@ -25,8 +25,6 @@ V této kapitole aplikaci dokončíme a vytvoříme konfiguraci, která bude vho
  - služba komunikuje přes obě sítě
 
 ```
-version: '3.8'
-
 services:
   ui:
     container_name: ui

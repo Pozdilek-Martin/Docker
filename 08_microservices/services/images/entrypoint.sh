@@ -10,8 +10,7 @@ if [ "$DATABASE" = "postgres" ]; then
 fi
 
 # prvotni vytvoreni a naplneni tabulek
-if [ "$DB_INIT" = "1" ];
-then
+if [ "$DB_INIT" = "1" ]; then
     echo "Creating the database tables..."
     python manage.py create_db
     echo "Tables created"
@@ -19,7 +18,6 @@ then
     echo "Filling the database tables..."
     python manage.py seed_db
     echo "Tables filled"
-
 fi
 
 exec "$@"
